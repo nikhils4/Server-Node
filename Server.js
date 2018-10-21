@@ -1,9 +1,35 @@
 const express = require('express');
 const hbs = require('hbs');   // handle bars
+const fs = require('fs');
 
 var app = express();
 app.set('view engine', 'hbs');   //setting view engine to handle bars
 hbs.registerPartials(__dirname + '/views/partials')
+
+//middle ware used to restrict further routing as in the case of maintenance of site and all
+
+
+// will use it store the time stamp values whenever the user logs in to the server
+app.use((req,res,next) => {
+    var now = new Date().toString();// toString used it to make the values more readable
+    var log = now + ' ' + req.method + ' ' + req.url;
+
+    console.log(log + '\n');
+    fs.appendFileSync('server.log', log + '\n', (err) => {
+            if (err) {
+                console.log('Unable to append to server.log');
+            }
+        }
+    );
+    next(); // instructs to proceed then , if not mentioned would stop the program here itself as in the case of maintenance sites -- commented below
+});
+
+// app.use((req,res,next) => {
+//     res.render('maintenance.hbs');
+// }); //no next is mentioned so on any further routing it will display the maintenance page only
+
+
+
 
 app.use(express.static(__dirname + '/public'));
 

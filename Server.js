@@ -1,6 +1,8 @@
 const express = require('express');
+const hbs = require('hbs');   // handle bars
 
 var app = express();
+app.set('view engine', 'hbs');   //setting view engine to handle bars
 
 app.use(express.static(__dirname + '/public'));
 
@@ -13,7 +15,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req,res) => {
-    res.send('About Page');
+    res.render('about.hbs', {         //rendering the about.hbs file in the views folder
+        titlePage: 'Title Page',
+        currentYear: new Date().getFullYear()     //getting the current date and using it in the template string placed in the about.hbs
+    });
 });
 
 app.get('/bad', (req, res) => {

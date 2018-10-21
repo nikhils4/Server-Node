@@ -2,6 +2,10 @@ const express = require('express');
 const hbs = require('hbs');   // handle bars
 const fs = require('fs');
 
+//changes to copeup with the deploy on heroku
+ var port = process.env.PATH || 3000;
+
+
 var app = express();
 app.set('view engine', 'hbs');   //setting view engine to handle bars
 hbs.registerPartials(__dirname + '/views/partials')
@@ -53,6 +57,6 @@ app.get('/bad', (req, res) => {
     res.send('Bad request - Error');
 });
 
-app.listen(3000, () => {
-    console.log('Server is up at port 3000');
+app.listen(port, () => {
+    console.log('Server is up at port ' + port);
 });

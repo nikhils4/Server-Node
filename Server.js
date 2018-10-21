@@ -8,7 +8,6 @@ hbs.registerPartials(__dirname + '/views/partials')
 
 //middle ware used to restrict further routing as in the case of maintenance of site and all
 
-
 // will use it store the time stamp values whenever the user logs in to the server
 app.use((req,res,next) => {
     var now = new Date().toString();// toString used it to make the values more readable
@@ -27,9 +26,6 @@ app.use((req,res,next) => {
 // app.use((req,res,next) => {
 //     res.render('maintenance.hbs');
 // }); //no next is mentioned so on any further routing it will display the maintenance page only
-
-
-
 
 app.use(express.static(__dirname + '/public'));
 

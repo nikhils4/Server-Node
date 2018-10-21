@@ -11,6 +11,10 @@ hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
 });
 
+// hbs.registerHelper('screamIt', (text) => {
+//     return text.toUpperCase(); at the place where the replacement has to be mentioned replace it as {{x}} the {{screamIt x}} :: by giving space we can pass as many arguments as we wish
+// });
+
 app.get('/', (req, res) => {
     res.render('home.hbs', {
         titlePage : 'Home Page'

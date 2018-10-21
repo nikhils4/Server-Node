@@ -3,7 +3,7 @@ const hbs = require('hbs');   // handle bars
 const fs = require('fs');
 
 //changes to copeup with the deploy on heroku
- var port = process.env.PATH || 3000;
+ var port = process.env.PORT || 3000;
 
 
 var app = express();
